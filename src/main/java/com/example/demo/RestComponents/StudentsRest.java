@@ -1,4 +1,4 @@
-package RestComponents;
+package com.example.demo.RestComponents;
 
 import java.util.List;
 
@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Models.StudentModel;
-import ServicesForRest.StudentService;
+import com.example.demo.Models.StudentModel;
+import com.example.demo.ServicesForRest.StudentService;
 
 @RestController
 @RequestMapping("/api")
 public class StudentsRest {
      
 	@Autowired
-	private StudentService studentservice;
+	private StudentService studentservice;	
 	
 	@PostMapping("/saveStudent")
 	public ResponseEntity<StudentModel> saveStudent(@RequestBody StudentModel Student){
+		System.out.println("saveStudent url");
 		StudentModel studSave=studentservice.saveStudent(Student);
 		return ResponseEntity.ok(studSave);
 	}
@@ -38,9 +39,9 @@ public class StudentsRest {
 		StudentModel studUpdate=studentservice.saveStudent(Student);
 		return ResponseEntity.ok(studUpdate);
 	}
-	@DeleteMapping("/{prn}")
-	 public ResponseEntity<String> deleteStudent(@PathVariable Long prn) {
-		studentservice.deleteStudentByPrn(prn);
-  return ResponseEntity.ok("Student with PRN " + prn + " deleted successfully.");
+	@DeleteMapping("/delete")
+	 public ResponseEntity<String> deleteStudent(@RequestBody StudentModel Student) {
+		studentservice.deleteStudentByPrn(Student.getStudent_prn());
+  return ResponseEntity.ok("Student with PRN " + Student + " deleted successfully.");
 }
 }

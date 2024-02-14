@@ -1,12 +1,12 @@
-package ServicesForRest;
+package com.example.demo.ServicesForRest;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Models.StudentModel;
-import jpaRepositories.StudentRepository;
+import com.example.demo.Models.StudentModel;
+import com.example.demo.jpaRepositories.StudentRepository;
 @Service
 public class StudentService {
 @Autowired	
@@ -19,13 +19,14 @@ public StudentModel saveStudent(StudentModel student) {
 return Studentrepo.save(student);
 }
 public StudentModel updateStudent(StudentModel student) {
+ Studentrepo.delete(student);
 return Studentrepo.save(student);
 }
-public void deleteStudentByPrn(Long prn) {
-    Studentrepo.deleteById(prn);
+public void deleteStudentByPrn(String student) {
+    Studentrepo.deleteByStudentPrn(student);
 }
-public void deleteAllStudents(Long prn) {
-    Studentrepo.deleteById(prn);
+public void deleteAllStudents(StudentModel student) {
+    Studentrepo.delete(student);
 }
 
 }
