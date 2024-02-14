@@ -14,10 +14,7 @@ public class AdminsDataService {
 	public AdminsDataModel saveAdmin(AdminsDataModel admin) {
 		return adminrepo.save(admin);
 		}
-		public AdminsDataModel updateAdmin(AdminsDataModel admin) {
-		return adminrepo.save(admin);
-		}
-		public void deleteAdminById(Long prn) {
-			adminrepo.deleteById(prn);
-		}
+	public AdminsDataModel findAdmin(AdminsDataModel admin) {
+		return adminrepo.findByAdminUserNameOrAdminEmail(admin.getAdminUserName(), admin.getAdminEmail());
+	}
 }
