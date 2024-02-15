@@ -26,7 +26,6 @@ public ResponseEntity<AdminsDataModel> adminSave(@RequestBody AdminsDataModel ad
 @PutMapping("/adminLogin")
 public int adminLogin(@RequestBody AdminsDataModel adminModel) {
 	AdminsDataModel adminAuth=adminService.findAdmin(adminModel);
-<<<<<<< HEAD
 	if(adminAuth==null) {
 		return 0;
 	}
