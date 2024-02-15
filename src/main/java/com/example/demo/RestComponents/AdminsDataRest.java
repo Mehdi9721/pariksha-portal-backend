@@ -36,11 +36,5 @@ public int adminLogin(@RequestBody AdminsDataModel adminModel) {
 	}
 	
 	return 1;
-=======
-	if(adminAuth!=null) {
-		return 1;
-	}
-	return 0;
->>>>>>> 5f449b9 (Created REST API for Exam)
 	}
 }
