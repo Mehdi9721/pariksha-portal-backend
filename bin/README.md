@@ -1,1 +1,0 @@
-# pariksha-portal-backend
