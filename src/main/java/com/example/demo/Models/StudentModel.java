@@ -30,8 +30,5 @@ public class StudentModel {
 			this.studentPrn = studentPrn;
 		}
 		
-<<<<<<< HEAD
+
 	    }
-=======
-	    }
->>>>>>> 6a397e9 (Created create exam REST API)
