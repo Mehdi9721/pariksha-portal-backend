@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Models.StudentModel;
 import com.example.demo.ServicesForRest.StudentService;
@@ -36,12 +38,8 @@ public class StudentsRest {
 	}
 	@PutMapping("/updateStudent")
 	public ResponseEntity<StudentModel> updateStudent(@RequestBody StudentModel Student){
-		  try {
-	            studentservice.updateStudent(Student);
-	            return ResponseEntity.noContent().build(); 
-	        } catch (Exception e) {
-	            return ResponseEntity.notFound().build(); 
-	        }
+		 studentservice.updateStudent(Student);
+	        return ResponseEntity.ok(Student);
 	}
 	@DeleteMapping("/delete")
 	 public ResponseEntity<String> deleteStudent(@RequestBody StudentModel Student) {
@@ -57,6 +55,17 @@ public class StudentsRest {
 	    } else {
 	        return ResponseEntity.notFound().build();
 	    }
-  
+	}
+	@DeleteMapping("/deleteAll")
+	 public ResponseEntity<String> deleteAllStudents() {
+		studentservice.deleteAllStudents();
+ return ResponseEntity.ok("All students are deleted successfully.");
+ 
 }
+	 @PostMapping("/upload")
+	    public String uploadFile(@RequestParam("file") MultipartFile file) {
+	       studentservice.processAndSaveFile(file);
+		 return "File uploaded successfully";
+	    }
+	
 }

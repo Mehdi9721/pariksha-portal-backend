@@ -1,8 +1,11 @@
 package com.example.demo.ServicesForRest;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Models.StudentModel;
 import com.example.demo.jpaRepositories.StudentRepository;
@@ -18,16 +21,24 @@ public StudentModel saveStudent(StudentModel student) {
 return Studentrepo.save(student);
 }
 public void updateStudent(StudentModel student) {
-	 long studentPrn = Studentrepo.getStudentByPrn(student.getStudentPrn());
-Studentrepo.updateStudent(student.getStudentPrn(),student.getStudentName(),studentPrn);
+Studentrepo.updateStudent(student.getStudentPrn(),student.getStudentName());
 }
 public void deleteStudentByPrn(String student) {
     Studentrepo.deleteByStudentPrn(student);
 }
-public void deleteAllStudents(StudentModel student) {
-    Studentrepo.delete(student);
+public void deleteAllStudents() {
+    Studentrepo.deleteAll();;
 }
 public StudentModel findStudentbyPrn(String prn) {
 	return Studentrepo.findByStudentPrn(prn);
+}
+public void processAndSaveFile(MultipartFile file) {
+    try (InputStream inputStream = file.getInputStream()) {
+        List<StudentModel> students = ExcelFileProcessor.process(inputStream);
+        Studentrepo.saveAll(students);
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Handle exception
+    }
 }
 }
