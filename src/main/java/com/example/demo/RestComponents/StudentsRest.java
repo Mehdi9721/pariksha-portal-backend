@@ -3,7 +3,6 @@ package com.example.demo.RestComponents;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +45,18 @@ public class StudentsRest {
 	}
 	@DeleteMapping("/delete")
 	 public ResponseEntity<String> deleteStudent(@RequestBody StudentModel Student) {
-		studentservice.deleteStudentByPrn(Student.getStudent_prn());
-  return ResponseEntity.ok("Student with PRN " + Student.getStudent_name() + " deleted successfully.");
+		studentservice.deleteStudentByPrn(Student.getStudentPrn());
+  return ResponseEntity.ok("Student with PRN " + Student.getStudentName() + " deleted successfully.");
+  
+}
+	@GetMapping("/getStudentByPrn/{prn}")
+	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn ) {
+		StudentModel studentValid=studentservice.findStudentbyPrn(prn);
+		if (studentValid != null) {
+	        return ResponseEntity.ok(studentValid);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
+  
 }
 }

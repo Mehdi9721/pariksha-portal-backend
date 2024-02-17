@@ -1,8 +1,6 @@
 package com.example.demo.ServicesForRest;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +18,8 @@ public StudentModel saveStudent(StudentModel student) {
 return Studentrepo.save(student);
 }
 public void updateStudent(StudentModel student) {
-	 long studentPrn = Studentrepo.getStudentByPrn(student.getStudent_prn());
-Studentrepo.updateStudent(student.getStudent_prn(),student.getStudent_name(),studentPrn);
+	 long studentPrn = Studentrepo.getStudentByPrn(student.getStudentPrn());
+Studentrepo.updateStudent(student.getStudentPrn(),student.getStudentName(),studentPrn);
 }
 public void deleteStudentByPrn(String student) {
     Studentrepo.deleteByStudentPrn(student);
@@ -29,7 +27,7 @@ public void deleteStudentByPrn(String student) {
 public void deleteAllStudents(StudentModel student) {
     Studentrepo.delete(student);
 }
-public Optional<StudentModel> getStudentById(Long prn) {
-	return Studentrepo.findById(prn);
+public StudentModel findStudentbyPrn(String prn) {
+	return Studentrepo.findByStudentPrn(prn);
 }
 }

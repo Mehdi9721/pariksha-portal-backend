@@ -14,18 +14,19 @@ public class StudentModel {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-	    private String student_name;
-	    private String student_prn;
-		public String getStudent_name() {
-			return student_name;
+	    private String studentName;
+	    private String studentPrn;
+		public String getStudentName() {
+			return studentName;
 		}
-		public void setStudent_name(String student_name) {
-			this.student_name = student_name;
+		public void setStudentName(String studentName) {
+			this.studentName = studentName;
 		}
-		public String getStudent_prn() {
-			return student_prn;
+		public String getStudentPrn() {
+			return studentPrn;
 		}
-		public void setStudent_prn(String student_prn) {
-			this.student_prn = student_prn;
+		public void setStudentPrn(String studentPrn) {
+			this.studentPrn = studentPrn;
 		}
+		
 	    }
