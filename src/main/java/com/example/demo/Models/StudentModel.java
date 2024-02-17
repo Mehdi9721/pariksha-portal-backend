@@ -16,10 +16,6 @@ public class StudentModel {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 	    private String studentName;
-<<<<<<< HEAD
-=======
-	   // @Column(unique=true , nullable = false)
->>>>>>> 6a397e9 (Created create exam REST API)
 	    private String studentPrn;
 		public String getStudentName() {
 			return studentName;
