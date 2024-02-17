@@ -19,43 +19,49 @@ public class CreateExamModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id ;
-	private String  Exam_id ;
-	private String Exam_Name;
-	private String Exam_Date;
-	private int Exam_Duration ;
-	//@ManyToOne
-   // @JoinColumn(name = "QuestionPaperID")
-	//private QuestionPaperDataModel QuestionPaperID ;
+	private String  uniqueID ;
+	private String examName;
+	private String examDate;
+	private int examDuration ;
+	//private String Question ;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getExam_id() {
-		return Exam_id;
+	public String getUniqueID() {
+		return uniqueID;
 	}
-	public void setExam_id(String exam_id) {
-		Exam_id = exam_id;
+	public void setUniqueID(String uniqueID) {
+		this.uniqueID = uniqueID;
 	}
-	public String getExam_Name() {
-		return Exam_Name;
+	public String getExamName() {
+		return examName;
 	}
-	public void setExam_Name(String exam_Name) {
-		Exam_Name = exam_Name;
+	public void setExamName(String examName) {
+		this.examName = examName;
 	}
-	public String getExam_Date() {
-		return Exam_Date;
+	public String getExamDate() {
+		return examDate;
 	}
-	public void setExam_Date(String exam_Date) {
-		Exam_Date = exam_Date;
+	public void setExamDate(String examDate) {
+		this.examDate = examDate;
 	}
-	public int getExam_Duration() {
-		return Exam_Duration;
+	public int getExamDuration() {
+		return examDuration;
 	}
-	public void setExam_Duration(int exam_Duration) {
-		Exam_Duration = exam_Duration;
+	public void setExamDuration(int examDuration) {
+		this.examDuration = examDuration;
 	}
+//	public String getQuestion() {
+//		return Question;
+//	}
+//	public void setQuestion(String question) {
+//		Question = question;
+//	}
+	
+	
 //	public QuestionPaperDataModel getQuestionPaperID() {
 //		return QuestionPaperID;
 //	}

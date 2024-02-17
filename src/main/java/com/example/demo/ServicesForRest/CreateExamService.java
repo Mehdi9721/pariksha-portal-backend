@@ -23,9 +23,9 @@ public CreateExamModel CreateExam(CreateExamModel Exam) {
 return createExamRepo.save(Exam);
 }
 
-public void deleteExamById(String examId) {
+public void deleteExamById(String uniqueID) {
    
-	createExamRepo.deleteById(examId);
+	createExamRepo.deleteById(uniqueID);
 }
 
 
