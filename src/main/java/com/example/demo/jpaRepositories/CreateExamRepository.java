@@ -19,8 +19,8 @@ public interface CreateExamRepository extends JpaRepository<CreateExamModel, Lon
 	
 	@Transactional
     @Modifying
-	@Query("delete FROM CreateExamModel E WHERE E.Exam_id = :ExamID")
-    void deleteById(@Param("ExamID") String ExamID);
+	@Query("delete FROM CreateExamModel E WHERE E.examId = :examId")
+    void deleteById(@Param("examId") String examId);
 	//void deleteById(String examId);
 
 	

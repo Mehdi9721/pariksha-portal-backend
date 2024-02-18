@@ -41,12 +41,26 @@ public class StudentsRest {
 		 studentservice.updateStudent(Student);
 	        return ResponseEntity.ok(Student);
 	}
-	@DeleteMapping("/delete")
-	 public ResponseEntity<String> deleteStudent(@RequestBody StudentModel Student) {
-		studentservice.deleteStudentByPrn(Student.getStudentPrn());
-  return ResponseEntity.ok("Student with PRN " + Student.getStudentName() + " deleted successfully.");
-  
-}
+//	@DeleteMapping("/delete")
+//	 public ResponseEntity<String> deleteStudent(@RequestBody StudentModel Student) {
+//		studentservice.deleteStudentByPrn(Student.getStudentPrn());
+//  return ResponseEntity.ok("Student with PRN " + Student.getStudentName() + " deleted successfully.");
+//  
+//}
+	
+	@DeleteMapping("/deleteStudent/{prn}")
+    public ResponseEntity<String> deleteStudentByPRN(@PathVariable String prn) {
+        try {
+            // Call the service to delete the student by PRN
+        	studentservice.deleteStudentByPRN(prn);
+            return ResponseEntity.ok("Student deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Internal Server Error");
+        }
+    }
+	
+	
+	
 	@GetMapping("/getStudentByPrn/{prn}")
 	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn ) {
 		StudentModel studentValid=studentservice.findStudentbyPrn(prn);
