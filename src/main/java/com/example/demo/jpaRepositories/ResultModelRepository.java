@@ -7,5 +7,5 @@ import com.example.demo.Models.ResultModel;
 @Repository
 public interface ResultModelRepository extends JpaRepository<ResultModel, Long> {
 	
-	 ResultModel findByStudentPrn(String prn);  
+	 ResultModel findByStudentPrn(String prn);
 }

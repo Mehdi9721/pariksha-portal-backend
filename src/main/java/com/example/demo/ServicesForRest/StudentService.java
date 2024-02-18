@@ -23,8 +23,9 @@ return Studentrepo.save(student);
 public void updateStudent(StudentModel student) {
 Studentrepo.updateStudent(student.getStudentPrn(),student.getStudentName());
 }
-public void deleteStudentByPrn(String student) {
-    Studentrepo.deleteByStudentPrn(student);
+public void deleteStudentByPRN(String prn) {
+   
+	Studentrepo.deleteByStudentPrn(prn);
 }
 public void deleteAllStudents() {
     Studentrepo.deleteAll();;

@@ -13,20 +13,8 @@ public class ResultModelService {
     @Autowired
     private ResultModelRepository resultModelRepository;
 
-    public List<ResultModel> getAllResultModels() {
-        return resultModelRepository.findAll();
-    }
-    
-    public ResultModel postAllResultModels(ResultModel result) {
+    public ResultModel saveStudent(ResultModel result) {
         return resultModelRepository.save(result);
-    }
-
-    public ResultModel saveStudent(ResultModel student) {
-        return resultModelRepository.save(student);
-    }
-
-    public ResultModel saveResult(ResultModel result) {
-        return resultModelRepository.save(result); 
     }
 
     public List<ResultModel> getAllStudents() {
@@ -35,5 +23,16 @@ public class ResultModelService {
 
     public ResultModel getResultByPRN(String prn) {
         return resultModelRepository.findByStudentPrn(prn);
+    }
+
+    public void deleteAllStudents() {
+        resultModelRepository.deleteAll();
+    }
+
+    public void deleteStudentByPRN(String prn) {
+        ResultModel result = getResultByPRN(prn);
+        if (result != null) {
+            resultModelRepository.delete(result);
+        }
     }
 }

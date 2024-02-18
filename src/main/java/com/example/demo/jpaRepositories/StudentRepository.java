@@ -25,6 +25,8 @@ public interface StudentRepository extends JpaRepository<StudentModel,Long>{
 	  @Query("SELECT s.id FROM StudentModel s WHERE s.studentPrn = :studentPrn")
 	    long getStudentByPrn(@Param("studentPrn") String studentPrn);  
 	  StudentModel findByStudentPrn(String prn);
+	  
+	  //void deleteByStudentPrn(String prn);
 	
 }
 	
