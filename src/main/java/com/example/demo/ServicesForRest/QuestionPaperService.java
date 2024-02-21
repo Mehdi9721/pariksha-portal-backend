@@ -28,14 +28,22 @@ public class QuestionPaperService {
     public void deleteAllQuestions() {
         questionPaperDataRepository.deleteAll();
     }
+
+    
+  
     public void processAndSaveQuestionPaper(MultipartFile file) {
         try (InputStream inputStream = file.getInputStream()) {
            List<QuestionPaperDataModel> papers = ExcelFileProcessorOfPaper.process(inputStream);
         	questionPaperDataRepository.saveAll(papers);
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle exception
+           
         }
     }
+
+	public List<QuestionPaperDataModel> findByExamId(String examId) {
+		
+		  return questionPaperDataRepository.findByExamId(examId);
+	}
     
 }

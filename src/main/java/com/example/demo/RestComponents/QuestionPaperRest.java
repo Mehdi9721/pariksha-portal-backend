@@ -35,10 +35,17 @@ public class QuestionPaperRest {
         return "All questions deleted successfully.";
     }
     
+    @GetMapping("/getAllQuestionsByExamId/{examId}")
+    public List<QuestionPaperDataModel> getAllQuestionsByExamId(@PathVariable String examId) {
+        return questionPaperService.findByExamId(examId);
+    }
+    
+
     @PostMapping("/uploadQuestionPaper")
     public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file) {
     	questionPaperService.processAndSaveQuestionPaper(file);
 	 return "File uploaded successfully";
     }
     
+
 }

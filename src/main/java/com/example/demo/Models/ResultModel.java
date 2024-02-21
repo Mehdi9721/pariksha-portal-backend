@@ -19,7 +19,8 @@ public class ResultModel {
     private String studentPrn;
     private String studentName;
     private String studentResultDownloadLink;  
-    private String examName;
+    private int studentMarks ;
+	private String examName;
     private String examDate;
 
     // Constructors, getters, setters, and other methods
@@ -29,16 +30,26 @@ public class ResultModel {
     }
 
     // Parameterized constructor
-    public ResultModel(String studentPrn, String studentName, String studentResultDownloadLink, String examName, String examDate) {
+    public ResultModel(String studentPrn, String studentName, String studentResultDownloadLink, String examName, String examDate , int studentMarks ) {
         this.studentPrn = studentPrn;
         this.studentName = studentName;
         this.studentResultDownloadLink = studentResultDownloadLink;
         this.examName = examName;
         this.examDate = examDate;
+        this.studentMarks=studentMarks;
     }
 
     // Getters and setters for all fields
 
+    public int getStudentMarks() {
+		return studentMarks;
+	}
+
+	public void setStudentMarks(int studentMarks) {
+		this.studentMarks = studentMarks;
+	}
+    
+    
     public Long getId() {
         return id;
     }

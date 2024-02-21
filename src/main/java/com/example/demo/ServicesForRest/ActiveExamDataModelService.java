@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Models.ActiveExamDataModel;
 import com.example.demo.jpaRepositories.ActiveExamDataModelRepository;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @Service
@@ -24,4 +26,12 @@ public class ActiveExamDataModelService {
     public void deleteAllActiveExamData() {
         activeExamDataModelRepository.deleteAll();
     }
+    
+    
+    
+    @Transactional
+    public void deleteActiveExamByStudentPrn(String studentPrn) {
+    	activeExamDataModelRepository.deleteByStudentPrn(studentPrn);
+    }
+    
 }
