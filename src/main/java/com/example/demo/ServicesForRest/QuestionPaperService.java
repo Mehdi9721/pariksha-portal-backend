@@ -24,4 +24,9 @@ public class QuestionPaperService {
     public void deleteAllQuestions() {
         questionPaperDataRepository.deleteAll();
     }
+    
+    public List<QuestionPaperDataModel> getAllQuestionsByExamId(String examId) {
+        return questionPaperDataRepository.findByExamId(examId);
+    }
+    
 }

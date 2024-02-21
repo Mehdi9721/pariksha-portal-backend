@@ -32,4 +32,13 @@ public class QuestionPaperRest {
         questionPaperDataRepository.deleteAll();
         return "All questions deleted successfully.";
     }
+    
+    // Get all questions by Exam ID
+    @GetMapping("/getAllQuestionsByExamId/{examId}")
+    public List<QuestionPaperDataModel> getAllQuestionsByExamId(@PathVariable String examId) {
+        return questionPaperDataRepository.findByExamId(examId);
+    }
+    
+    
+    
 }
