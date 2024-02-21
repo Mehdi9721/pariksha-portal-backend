@@ -15,7 +15,6 @@ public class ActiveExamRecordRest {
 
     @Autowired
     private ActiveExamDataModelService activeExamDataModelService;
-
     @GetMapping("/getAllActiveExamData")
     public ResponseEntity<List<ActiveExamDataModel>> getAllActiveExamData() {
         List<ActiveExamDataModel> activeExamData = activeExamDataModelService.getAllActiveExamData();
@@ -34,6 +33,7 @@ public class ActiveExamRecordRest {
         return ResponseEntity.noContent().build();
     }
     
+
     @DeleteMapping("/deleteActiveExamByStudentPrn/{Prn}")
     public ResponseEntity<Void> deleteActiveExamByStudentPrn(@PathVariable String Prn) {
         try {
@@ -45,6 +45,5 @@ public class ActiveExamRecordRest {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
-    
+   
 }

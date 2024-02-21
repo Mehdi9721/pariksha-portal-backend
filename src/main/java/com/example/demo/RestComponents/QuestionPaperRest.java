@@ -1,9 +1,11 @@
 package com.example.demo.RestComponents;
 
 import com.example.demo.Models.QuestionPaperDataModel;
+import com.example.demo.ServicesForRest.QuestionPaperService;
 import com.example.demo.jpaRepositories.QuestionPaperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,33 +14,38 @@ import java.util.List;
 public class QuestionPaperRest {
 
     @Autowired
-    private QuestionPaperRepository questionPaperDataRepository;
+    private QuestionPaperService questionPaperService;
 
     // Get all questions
     @GetMapping("/getAllQuestions")
     public List<QuestionPaperDataModel> getAllQuestions() {
-        return questionPaperDataRepository.findAll();
+        return questionPaperService.getAllQuestions();
     }
 
     // Add a new question
     @PostMapping("/addQuestion")
     public QuestionPaperDataModel addQuestion(@RequestBody QuestionPaperDataModel question) {
-        return questionPaperDataRepository.save(question);
+        return questionPaperService.addQuestion(question);
     }
 
     // Delete all questions
     @DeleteMapping("/deleteAllQuestions")
     public String deleteAllQuestions() {
-        questionPaperDataRepository.deleteAll();
+    	questionPaperService.deleteAllQuestions();
         return "All questions deleted successfully.";
     }
     
-    // Get all questions by Exam ID
     @GetMapping("/getAllQuestionsByExamId/{examId}")
     public List<QuestionPaperDataModel> getAllQuestionsByExamId(@PathVariable String examId) {
-        return questionPaperDataRepository.findByExamId(examId);
+        return questionPaperService.findByExamId(examId);
     }
     
+
+    @PostMapping("/uploadQuestionPaper")
+    public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file) {
+    	questionPaperService.processAndSaveQuestionPaper(file);
+	 return "File uploaded successfully";
+    }
     
-    
+
 }

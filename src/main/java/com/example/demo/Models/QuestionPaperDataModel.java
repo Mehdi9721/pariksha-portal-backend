@@ -20,9 +20,6 @@ public class QuestionPaperDataModel {
     private String optionC;
     private String optionD;
     private String answer;
-
-    // Constructors, getters, setters, and other methods can be added here
-
     
     public String getExamId() {
 		return examId;

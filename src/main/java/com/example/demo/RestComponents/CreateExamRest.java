@@ -64,8 +64,11 @@ public class CreateExamRest {
 	        return ResponseEntity.noContent().build();
 	    }
 	
-	
-	
+	@GetMapping("/getExamByExamId/{examId}")
+	public ResponseEntity<CreateExamModel> getExamByExamId(@PathVariable String examId) {
+       CreateExamModel Exams=createExamService.examById(examId);
+        return ResponseEntity.ok(Exams);
+    }	
 	
 	
 	
