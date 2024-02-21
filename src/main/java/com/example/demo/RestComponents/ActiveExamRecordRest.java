@@ -14,7 +14,6 @@ public class ActiveExamRecordRest {
 
     @Autowired
     private ActiveExamDataModelService activeExamDataModelService;
-
     @GetMapping("/getAllActiveExamData")
     public ResponseEntity<List<ActiveExamDataModel>> getAllActiveExamData() {
         List<ActiveExamDataModel> activeExamData = activeExamDataModelService.getAllActiveExamData();
@@ -32,4 +31,5 @@ public class ActiveExamRecordRest {
         activeExamDataModelService.deleteAllActiveExamData();
         return ResponseEntity.noContent().build();
     }
+    
 }

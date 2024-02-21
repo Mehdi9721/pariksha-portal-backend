@@ -27,11 +27,12 @@ public void deleteExamById(String examId) {
    
 	createExamRepo.deleteById(examId);
 }
-
-
 public void deleteAllExams() {
    
 	createExamRepo.deleteAll();
+}
+public CreateExamModel examById(String examId) {	
+return createExamRepo.findByExamId(examId);
 }
 
 }
