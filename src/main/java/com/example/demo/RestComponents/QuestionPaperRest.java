@@ -47,5 +47,10 @@ public class QuestionPaperRest {
 	 return "File uploaded successfully";
     }
     
+    @DeleteMapping("/deleteQuestionByExamId/{examId}")
+    public String deleteQuestionByExamId(@PathVariable String examId) {
+        questionPaperService.deleteQuestionByExamId(examId);
+        return "Questions with Exam ID " + examId + " deleted successfully.";
+    }
 
 }
