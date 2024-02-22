@@ -35,11 +35,8 @@ public class ResultModelService {
             resultModelRepository.delete(result);
         }
     }
-    public int getresultByprnandExamid(String examId,String studentPrn) {
+    public ResultModel getresultByprnandExamid(String examId,String studentPrn) {
     ResultModel rm=	resultModelRepository.getStudentResultByExamIdandPrn(examId, studentPrn);
-    if (rm == null) {
-        return 1;
-    }
-    return 0;
+    return rm;
     }
 }

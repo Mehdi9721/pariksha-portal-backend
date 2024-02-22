@@ -3,6 +3,7 @@ package com.example.demo.RestComponents;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,13 +68,6 @@ public class StudentsRest {
 	
 	@GetMapping("/getStudentByPrn/{prn}")
 	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn,@RequestParam String examId,@RequestParam String studentPrn ) {
-System.out.println(examId);
-System.out.println(studentPrn);
-
-int k=resultService.getresultByprnandExamid(examId,studentPrn);
-if(k==0) {
-	 return ResponseEntity.notFound().build();
-}
 		StudentModel studentValid=studentservice.findStudentbyPrn(prn);
 		if (studentValid != null) {
 	        return ResponseEntity.ok(studentValid);
