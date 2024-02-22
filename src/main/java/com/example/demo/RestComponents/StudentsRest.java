@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.Models.ResultModel;
 import com.example.demo.Models.StudentModel;
+import com.example.demo.ServicesForRest.ResultModelService;
 import com.example.demo.ServicesForRest.StudentService;
+import com.example.demo.jpaRepositories.ResultModelRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -59,10 +62,18 @@ public class StudentsRest {
         }
     }
 	
-	
+	@Autowired
+	ResultModelService resultService;
 	
 	@GetMapping("/getStudentByPrn/{prn}")
-	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn ) {
+	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn,@RequestParam String examId,@RequestParam String studentPrn ) {
+System.out.println(examId);
+System.out.println(studentPrn);
+
+int k=resultService.getresultByprnandExamid(examId,studentPrn);
+if(k==0) {
+	 return ResponseEntity.notFound().build();
+}
 		StudentModel studentValid=studentservice.findStudentbyPrn(prn);
 		if (studentValid != null) {
 	        return ResponseEntity.ok(studentValid);

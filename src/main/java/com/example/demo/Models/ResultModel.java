@@ -22,7 +22,7 @@ public class ResultModel {
     private int studentMarks ;
 	private String examName;
     private String examDate;
-
+    private String examId;
     // Constructors, getters, setters, and other methods
 
     // Default constructor
@@ -43,6 +43,14 @@ public class ResultModel {
 
     public int getStudentMarks() {
 		return studentMarks;
+	}
+
+	public String getExamId() {
+		return examId;
+	}
+
+	public void setExamId(String examId) {
+		this.examId = examId;
 	}
 
 	public void setStudentMarks(int studentMarks) {
