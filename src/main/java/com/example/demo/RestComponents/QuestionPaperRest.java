@@ -42,15 +42,15 @@ public class QuestionPaperRest {
     
 
     @PostMapping("/uploadQuestionPaper")
-    public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file) {
-    	questionPaperService.processAndSaveQuestionPaper(file);
+    public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file, @RequestParam("examId") String examId) {
+    	questionPaperService.processAndSaveQuestionPaper(file,examId);
 	 return "File uploaded successfully";
     }
     
-    @DeleteMapping("/deleteQuestionByExamId/{examId}")
-    public String deleteQuestionByExamId(@PathVariable String examId) {
-        questionPaperService.deleteQuestionByExamId(examId);
-        return "Questions with Exam ID " + examId + " deleted successfully.";
+    @DeleteMapping("/deleteQuestionByExamId/{id}")
+    public String deleteQuestionByExamId(@PathVariable String id) {
+        questionPaperService.deleteQuestionByExamId(id);
+        return "Questions with Exam ID " + id + " deleted successfully.";
     }
 
 }

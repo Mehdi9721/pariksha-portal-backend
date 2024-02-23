@@ -24,8 +24,8 @@ public interface QuestionPaperRepository extends JpaRepository<QuestionPaperData
 	  
 	  @Modifying
 	    @Transactional
-	    @Query("DELETE FROM QuestionPaperDataModel q WHERE q.examId = :examId")
-	    void deleteQuestionByExamId(String examId);
+	    @Query("DELETE FROM QuestionPaperDataModel q WHERE q.id = :id")
+	    void deleteQuestionByExamId(String id);
 	  
 	  
 }

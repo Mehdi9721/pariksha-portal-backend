@@ -37,7 +37,6 @@ public class ResultDataRest {
 
     @GetMapping("/getStudentResultDataByStudentPrn/{prn}")
     public ResponseEntity<ResultModel> getStudentResultByPRN(@PathVariable String prn) {
-    	System.out.println("ok");
         ResultModel result = resultModelService.getResultByPRN(prn);
         if (result == null) {
             return ResponseEntity.notFound().build();

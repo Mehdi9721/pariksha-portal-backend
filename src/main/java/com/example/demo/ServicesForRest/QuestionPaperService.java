@@ -31,9 +31,12 @@ public class QuestionPaperService {
 
     
   
-    public void processAndSaveQuestionPaper(MultipartFile file) {
+    public void processAndSaveQuestionPaper(MultipartFile file,String examId) {
         try (InputStream inputStream = file.getInputStream()) {
            List<QuestionPaperDataModel> papers = ExcelFileProcessorOfPaper.process(inputStream);
+           for (QuestionPaperDataModel questionPaper : papers) {
+               questionPaper.setExamId(examId);
+           }
         	questionPaperDataRepository.saveAll(papers);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,8 +49,8 @@ public class QuestionPaperService {
 		  return questionPaperDataRepository.findByExamId(examId);
 	}
 	
-	  public void deleteQuestionByExamId(String examId) {
-		  questionPaperDataRepository.deleteQuestionByExamId(examId);
+	  public void deleteQuestionByExamId(String id) {
+		  questionPaperDataRepository.deleteQuestionByExamId(id);
 	    }
 	
     
