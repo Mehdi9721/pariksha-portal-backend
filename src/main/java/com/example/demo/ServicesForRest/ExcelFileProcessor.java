@@ -14,8 +14,8 @@ public class ExcelFileProcessor {
 
         try (Workbook workbook = WorkbookFactory.create(inputStream)) {
             Sheet sheet = workbook.getSheetAt(0); // Assuming data is in the first sheet
-
             Iterator<Row> rowIterator = sheet.iterator();
+            rowIterator.next();
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 Cell studentNameCell = row.getCell(2);
