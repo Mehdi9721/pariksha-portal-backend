@@ -16,8 +16,6 @@ import com.example.demo.Models.CreateExamModel;
 import com.example.demo.Models.StudentModel;
 import com.example.demo.ServicesForRest.CreateExamService;
 
-
-
 @RestController
 @RequestMapping("/api")
 public class CreateExamRest {
@@ -37,8 +35,8 @@ public class CreateExamRest {
 	
 	@GetMapping("/getAllExams")
 	public  ResponseEntity<List<CreateExamModel>> getAllExam(){
-		System.out.println("List of Exams from table ExamRecords");
 		  List<CreateExamModel> Exams = createExamService.getAllExam();
+		  System.out.println("all exams");
 	        return ResponseEntity.ok(Exams);
 	}
 	

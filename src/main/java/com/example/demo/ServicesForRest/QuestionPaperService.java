@@ -49,8 +49,9 @@ public class QuestionPaperService {
 		  return questionPaperDataRepository.findByExamId(examId);
 	}
 	
-	  public void deleteQuestionByExamId(String id) {
-		  questionPaperDataRepository.deleteQuestionByExamId(id);
+	  public void deleteQuestionByExamId(Long id) {
+		  questionPaperDataRepository.deleteById(id);
+		
 	    }
 	
     

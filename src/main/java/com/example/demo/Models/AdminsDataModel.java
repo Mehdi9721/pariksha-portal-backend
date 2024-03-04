@@ -8,11 +8,7 @@ import jakarta.persistence.GenerationType;
 @Entity
 @Table(name = "adminsrecord")
 public class AdminsDataModel {
-
-	public AdminsDataModel(){
 	
-    }
-
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long Id;
@@ -21,6 +17,23 @@ private String adminName;
 private String adminUserName;
 private String adminEmail;
 private String adminPassword;
+private String adminRoles;
+public AdminsDataModel(){
+    this.adminRoles = "ROLE_ADMIN";
+}
+
+public Long getId() {
+	return Id;
+}
+public void setId(Long id) {
+	Id = id;
+}
+public String getAdminRoles() {
+	return adminRoles;
+}
+public void setAdminRoles(String adminRoles) {
+	this.adminRoles = adminRoles;
+}
 public String getAdminName() {
 	return adminName;
 }
@@ -44,6 +57,12 @@ public String getAdminPassword() {
 }
 public void setAdminPassword(String adminPassword) {
 	this.adminPassword = adminPassword;
+}
+
+@Override
+public String toString() {
+	return "AdminsDataModel [Id=" + Id + ", adminName=" + adminName + ", adminUserName=" + adminUserName
+			+ ", adminEmail=" + adminEmail + ", adminPassword=" + adminPassword + ", adminRoles=" + adminRoles + "]";
 }
 
 }

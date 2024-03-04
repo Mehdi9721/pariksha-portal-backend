@@ -48,7 +48,7 @@ public class QuestionPaperRest {
     }
     
     @DeleteMapping("/deleteQuestionByExamId/{id}")
-    public String deleteQuestionByExamId(@PathVariable String id) {
+    public String deleteQuestionByExamId(@PathVariable Long id) {
         questionPaperService.deleteQuestionByExamId(id);
         return "Questions with Exam ID " + id + " deleted successfully.";
     }
