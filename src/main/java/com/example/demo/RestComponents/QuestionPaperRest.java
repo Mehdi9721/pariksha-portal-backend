@@ -17,9 +17,9 @@ public class QuestionPaperRest {
     private QuestionPaperService questionPaperService;
 
     // Get all questions
-    @GetMapping("/getAllQuestions")
-    public List<QuestionPaperDataModel> getAllQuestions() {
-        return questionPaperService.getAllQuestions();
+    @GetMapping("/getAllQuestions/{adminEmail}")
+    public List<QuestionPaperDataModel> getAllQuestions(@PathVariable String adminEmail) {
+        return questionPaperService.getAllQuestions(adminEmail);
     }
 
     // Add a new question
@@ -29,9 +29,9 @@ public class QuestionPaperRest {
     }
 
     // Delete all questions
-    @DeleteMapping("/deleteAllQuestions")
-    public String deleteAllQuestions() {
-    	questionPaperService.deleteAllQuestions();
+    @DeleteMapping("/deleteAllQuestions/{adminEmail}")
+    public String deleteAllQuestions(@PathVariable String adminEmail) {
+    	questionPaperService.deleteAllQuestions(adminEmail);
         return "All questions deleted successfully.";
     }
     
@@ -42,15 +42,21 @@ public class QuestionPaperRest {
     
 
     @PostMapping("/uploadQuestionPaper")
-    public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file, @RequestParam("examId") String examId) {
-    	questionPaperService.processAndSaveQuestionPaper(file,examId);
+    public String uploadFileForQuestionPaper(@RequestParam("file") MultipartFile file, @RequestParam("examId") String examId,@RequestParam("adminEmail") String adminEmail) {
+    	questionPaperService.processAndSaveQuestionPaper(file,examId,adminEmail);
 	 return "File uploaded successfully";
     }
     
-    @DeleteMapping("/deleteQuestionByExamId/{id}")
-    public String deleteQuestionByExamId(@PathVariable Long id) {
-        questionPaperService.deleteQuestionByExamId(id);
+    @DeleteMapping("/deleteQuestionById/{id}")
+    public String deleteQuestionById(@PathVariable Long id) {
+        questionPaperService.deleteQuestionById(id);
         return "Questions with Exam ID " + id + " deleted successfully.";
+    }
+    
+    @DeleteMapping("/deleteQuestionByExamId/{examId}")
+    public String deleteQuestionByExamId(@PathVariable String examId) {
+        questionPaperService.deleteQuestionByExamId(examId);
+        return "Questions with Exam ID " + examId+ " deleted successfully.";
     }
 
 }

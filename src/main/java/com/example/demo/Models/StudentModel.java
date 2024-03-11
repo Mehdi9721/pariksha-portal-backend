@@ -16,6 +16,21 @@ public class StudentModel {
 	    private Long id;
 	    private String studentName;
 	    private String studentPrn;
+	    private String adminId;
+	    
+		public Long getId() {
+			return id;
+		}
+		public void setId(Long id) {
+			this.id = id;
+		}
+	
+		public String getAdminId() {
+			return adminId;
+		}
+		public void setAdminId(String adminId) {
+			this.adminId = adminId;
+		}
 		public String getStudentName() {
 			return studentName;
 		}

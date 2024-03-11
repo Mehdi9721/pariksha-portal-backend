@@ -17,16 +17,19 @@ public class ResultModelService {
         return resultModelRepository.save(result);
     }
 
-    public List<ResultModel> getAllStudents() {
-        return resultModelRepository.findAll();
+    public List<ResultModel> getAllStudents(String adminId) {
+        return resultModelRepository.findAllResults(adminId);
     }
 
     public ResultModel getResultByPRN(String prn) {
         return resultModelRepository.findByStudentPrn(prn);
     }
+    public ResultModel getResultByPRN(String prn,String adminId) {
+        return resultModelRepository.findByStudentPrn(prn,adminId);
+    }
 
-    public void deleteAllStudents() {
-        resultModelRepository.deleteAll();
+    public void deleteAllStudents(String adminId) {
+        resultModelRepository.deleteAllResult(adminId);
     }
 
     public void deleteStudentByPRN(String prn) {

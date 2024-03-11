@@ -15,8 +15,8 @@ public class CreateExamService {
 private CreateExamRepository createExamRepo ;
 	
 
-public List<CreateExamModel> getAllExam(){
-	return createExamRepo.findAll();
+public List<CreateExamModel> getAllExam(String adminEmail){
+	return createExamRepo.findAllExam(adminEmail);
 }
 
 public CreateExamModel CreateExam(CreateExamModel Exam) {
@@ -27,9 +27,8 @@ public void deleteExamById(String examId) {
    
 	createExamRepo.deleteById(examId);
 }
-public void deleteAllExams() {
-   
-	createExamRepo.deleteAll();
+public void deleteAllExams(String adminEmail) {
+	createExamRepo.deleteAll(adminEmail);
 }
 public CreateExamModel examById(String examId) {	
 return createExamRepo.findByExamId(examId);

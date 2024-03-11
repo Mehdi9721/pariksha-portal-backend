@@ -1,5 +1,7 @@
 package com.example.demo.jpaRepositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +26,17 @@ public interface StudentRepository extends JpaRepository<StudentModel,Long>{
 	  
 	  @Query("SELECT s.id FROM StudentModel s WHERE s.studentPrn = :studentPrn")
 	    long getStudentByPrn(@Param("studentPrn") String studentPrn);  
-	  StudentModel findByStudentPrn(String prn);
+	 
+	  @Query("Select E from StudentModel E where E.adminId = :adminId and E.studentPrn= :prn")
+	  StudentModel findByStudentPrn(@Param("prn")  String prn,@Param("adminId") String adminId);
+	  
+	  @Query("Select E from StudentModel E where E.adminId = :adminId")
+	  List<StudentModel> findAllStu(@Param("adminId") String adminId);
+	  
+	  @Transactional
+	    @Modifying
+		@Query("delete FROM StudentModel s WHERE s.adminId = :adminId")
+	  void deleteAllStudent(@Param("adminId") String adminId);
 	  
 	  //void deleteByStudentPrn(String prn);
 	

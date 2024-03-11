@@ -15,7 +15,6 @@ public class ResultModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String studentPrn;
     private String studentName;
     private String studentResultDownloadLink;  
@@ -23,6 +22,7 @@ public class ResultModel {
 	private String examName;
     private String examDate;
     private String examId;
+    private String adminId;
     // Constructors, getters, setters, and other methods
 
     // Default constructor
@@ -43,6 +43,14 @@ public class ResultModel {
 
     public int getStudentMarks() {
 		return studentMarks;
+	}
+
+	public String getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
 
 	public String getExamId() {

@@ -12,7 +12,6 @@ public class AdminsDataModel {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long Id;
-
 private String adminName;
 private String adminUserName;
 private String adminEmail;

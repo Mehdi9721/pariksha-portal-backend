@@ -1,5 +1,7 @@
 package com.example.demo.jpaRepositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +24,13 @@ public interface CreateExamRepository extends JpaRepository<CreateExamModel, Lon
 	@Query("delete FROM CreateExamModel E WHERE E.examId = :examId")
     void deleteById(@Param("examId") String examId);
 	
+	@Query("select E from CreateExamModel E WHERE E.adminEmail = :adminEmail")
+	List<CreateExamModel> findAllExam(@Param("adminEmail") String adminEmail);
 	
    CreateExamModel findByExamId(String examId);
+  
+	@Transactional
+    @Modifying
+	@Query("delete FROM CreateExamModel E WHERE E.adminEmail = :adminEmail")
+   void deleteAll(@Param("adminEmail") String adminEmail);
 }

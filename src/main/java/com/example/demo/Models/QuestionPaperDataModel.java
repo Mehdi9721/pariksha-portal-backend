@@ -20,8 +20,17 @@ public class QuestionPaperDataModel {
     private String optionC;
     private String optionD;
     private String answer;
+    private String adminEmail;
     
-    public String getExamId() {
+    public String getAdminEmail() {
+		return adminEmail;
+	}
+
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
+
+	public String getExamId() {
 		return examId;
 	}
 

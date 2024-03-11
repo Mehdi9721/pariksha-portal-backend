@@ -19,8 +19,8 @@ public class ActiveExamDataModelService {
         return activeExamDataModelRepository.save(activeExamData);
     }
 
-    public List<ActiveExamDataModel> getAllActiveExamData() {
-        return activeExamDataModelRepository.findAll();
+    public List<ActiveExamDataModel> getAllActiveExamData(String adminId) {
+        return activeExamDataModelRepository.findAllExam(adminId);
     }
 
     public void deleteAllActiveExamData() {

@@ -9,7 +9,7 @@ import com.example.demo.Models.StudentModel;
 
 public class ExcelFileProcessor {
 	//for processing students data
-    public static List<StudentModel> process(InputStream inputStream) {
+    public static List<StudentModel> process(InputStream inputStream ,String adminId) {
         List<StudentModel> students = new ArrayList<>();
 
         try (Workbook workbook = WorkbookFactory.create(inputStream)) {
@@ -27,6 +27,7 @@ public class ExcelFileProcessor {
                 StudentModel student = new StudentModel();
                 student.setStudentName(studentName);
                 student.setStudentPrn(studentPrn);
+                student.setAdminId(adminId);
                 students.add(student);
             }
         } catch (Exception e) {

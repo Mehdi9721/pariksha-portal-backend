@@ -17,8 +17,9 @@ public class ActiveExamDataModel {
     private String examDate;
     private String examName;
     private String studentName;
-    private String studentPrn;
-
+    private String studentPrn;	
+    private String adminEmail;
+    private String adminId;
     // Constructors, getters, setters, and other methods
 
     // Default constructor
@@ -26,11 +27,12 @@ public class ActiveExamDataModel {
     }
 
     // Parameterized constructor
-    public ActiveExamDataModel(String examDate, String examName, String studentName, String studentPrn) {
+    public ActiveExamDataModel(String adminId,String examDate, String examName, String studentName, String studentPrn) {
         this.examDate = examDate;
         this.examName = examName;
         this.studentName = studentName;
         this.studentPrn = studentPrn;
+        this.adminId=adminId;
     }
 
     // Getters and setters for all fields
@@ -39,7 +41,23 @@ public class ActiveExamDataModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public String getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
+	}
+
+	public String getAdminEmail() {
+		return adminEmail;
+	}
+
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

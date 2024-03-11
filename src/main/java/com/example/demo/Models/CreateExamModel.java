@@ -20,12 +20,20 @@ public class CreateExamModel {
     private long id;
     private String examId;
     private String examName;
-    private String examSchedule; // Use Timestamp for both date and time
+    private String examSchedule; 
     private int examDuration;
+    private String adminEmail;  
+   
+    
+    public String getAdminEmail() {
+		return adminEmail;
+	}
 
-    // Constructors, getters, setters, and other methods can be added here
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
 
-    public long getId() {
+	public long getId() {
         return id;
     }
 

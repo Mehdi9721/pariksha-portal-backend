@@ -15,9 +15,9 @@ public class ActiveExamRecordRest {
 
     @Autowired
     private ActiveExamDataModelService activeExamDataModelService;
-    @GetMapping("/getAllActiveExamData")
-    public ResponseEntity<List<ActiveExamDataModel>> getAllActiveExamData() {
-        List<ActiveExamDataModel> activeExamData = activeExamDataModelService.getAllActiveExamData();
+    @GetMapping("/getAllActiveExamData/{adminId}")
+    public ResponseEntity<List<ActiveExamDataModel>> getAllActiveExamData(@PathVariable String adminId) {
+        List<ActiveExamDataModel> activeExamData = activeExamDataModelService.getAllActiveExamData(adminId);
         return ResponseEntity.ok(activeExamData);
     }
 

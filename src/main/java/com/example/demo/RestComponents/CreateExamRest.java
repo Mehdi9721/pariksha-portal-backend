@@ -27,16 +27,14 @@ public class CreateExamRest {
 	@PostMapping("/createExam")
 	public ResponseEntity<CreateExamModel> CreateExam(@RequestBody CreateExamModel Exam ){
 		
-		System.out.println("Exam Created in table named : ExamRecord ");
 		CreateExamModel Exam_created = createExamService.CreateExam(Exam);
 		return ResponseEntity.ok(Exam_created);
 		
 	}
 	
-	@GetMapping("/getAllExams")
-	public  ResponseEntity<List<CreateExamModel>> getAllExam(){
-		  List<CreateExamModel> Exams = createExamService.getAllExam();
-		  System.out.println("all exams");
+	@GetMapping("/getAllExams/{adminEmail}")
+	public  ResponseEntity<List<CreateExamModel>> getAllExam(@PathVariable String adminEmail){
+		  List<CreateExamModel> Exams = createExamService.getAllExam(adminEmail);
 	        return ResponseEntity.ok(Exams);
 	}
 	
@@ -52,12 +50,11 @@ public class CreateExamRest {
     }
 	
 	
-	 @DeleteMapping("/deleteAllExams")
-	    public ResponseEntity<CreateExamModel> deleteAllExams() {
-	        System.out.println("Deleting all exams data from the table ExamRecords");
-
+	 @DeleteMapping("/deleteAllExams/{adminEmail}")
+	    public ResponseEntity<CreateExamModel> deleteAllExams(@PathVariable String adminEmail) {
+	  
 	        // Call the service method to delete all exams
-	        createExamService.deleteAllExams();
+	        createExamService.deleteAllExams(adminEmail);
 
 	        return ResponseEntity.noContent().build();
 	    }

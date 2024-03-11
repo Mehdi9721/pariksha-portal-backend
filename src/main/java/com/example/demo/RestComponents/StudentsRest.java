@@ -35,9 +35,9 @@ public class StudentsRest {
 		StudentModel studSave=studentservice.saveStudent(Student);
 		return ResponseEntity.ok(studSave);
 	}
-	@GetMapping("/getAllStudent")
-	public  ResponseEntity<List<StudentModel>> getAllStudent(){
-		  List<StudentModel> students = studentservice.getAllStudents();
+	@GetMapping("/getAllStudent/{adminId}")
+	public  ResponseEntity<List<StudentModel>> getAllStudent(@PathVariable String adminId ){
+		  List<StudentModel> students = studentservice.getAllStudents(adminId);
 	        return ResponseEntity.ok(students);
 	}
 	@PutMapping("/updateStudent")
@@ -66,24 +66,26 @@ public class StudentsRest {
 	@Autowired
 	ResultModelService resultService;
 	
-	@GetMapping("/getStudentByPrn/{prn}")
-	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn,@RequestParam String examId,@RequestParam String studentPrn ) {
-		StudentModel studentValid=studentservice.findStudentbyPrn(prn);
+	@GetMapping("/getStudentByPrn/{prn}/{adminId}")
+	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn,@PathVariable() String adminId) {
+		System.out.println("ok...");
+		StudentModel studentValid=studentservice.findStudentbyPrn(prn,adminId);
+		System.out.println(studentValid);
 		if (studentValid != null) {
 	        return ResponseEntity.ok(studentValid);
 	    } else {
 	        return ResponseEntity.notFound().build();
 	    }
 	}
-	@DeleteMapping("/deleteAll")
-	 public ResponseEntity<String> deleteAllStudents() {
-		studentservice.deleteAllStudents();
+	@DeleteMapping("/deleteAll/{adminId}")
+	 public ResponseEntity<String> deleteAllStudents(@PathVariable() String adminId) {
+		studentservice.deleteAllStudents(adminId);
  return ResponseEntity.ok("All students are deleted successfully.");
  
 }
 	 @PostMapping("/upload")
-	    public String uploadFile(@RequestParam("file") MultipartFile file) {
-	       studentservice.processAndSaveFile(file);
+	    public String uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("adminId")String adminId) {
+	       studentservice.processAndSaveFile(file,adminId);
 		 return "File uploaded successfully";
 	    }
 	

@@ -1,6 +1,10 @@
 package com.example.demo.RestComponents;
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,7 @@ import com.example.demo.Auth.AuthRequestModel;
 import com.example.demo.Models.AdminsDataModel;
 import com.example.demo.ServicesForRest.AdminsDataService;
 import com.example.demo.ServicesForRest.JwtService;
+import com.example.demo.jpaRepositories.AdminsDataRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -49,15 +54,28 @@ public ResponseEntity<String> adminLogin(@RequestBody AdminsDataModel adminModel
 	  String token = jwtService.generateToken(adminModel.getAdminEmail());
 	   return ResponseEntity.ok("Login successful. Token: " + token);
 	}
+
+@Autowired
+private AdminsDataRepository adminr;
+
 @PutMapping("/adminLogin")
-public ResponseEntity<String> authenticateAndGetToken(@RequestBody AuthRequestModel authRequest) {
+public ResponseEntity<Map<String, String>> authenticateAndGetToken(@RequestBody AuthRequestModel authRequest) {
 	 try {
 		
 		    Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getAdminEmail(), authRequest.getAdminPassword()));
-		    System.out.println("hello");
 		    if (authentication.isAuthenticated()) {
 		  	  String token = jwtService.generateToken(authRequest.getAdminEmail());
-			   return ResponseEntity.ok(token);
+		  	  
+		  Optional<AdminsDataModel> x= adminr.findByAdminEmail(authRequest.getAdminEmail());
+		  String adminId = x.map(admin -> admin.getId().toString())
+                  .orElse(null);
+		  String adminName = x.map(admin -> admin.getAdminName())
+                  .orElse(null);
+		  	 Map<String, String> responseMap = new HashMap<>();
+	            responseMap.put("token", token);
+	            responseMap.put("adminId", adminId);
+	            responseMap.put("adminName", adminName);
+	            return ResponseEntity.ok(responseMap);
 		    } else {
 		        throw new UsernameNotFoundException("invalid user request !");
 		    }
@@ -67,4 +85,7 @@ public ResponseEntity<String> authenticateAndGetToken(@RequestBody AuthRequestMo
 		}
 
 }
+
+
+
 }

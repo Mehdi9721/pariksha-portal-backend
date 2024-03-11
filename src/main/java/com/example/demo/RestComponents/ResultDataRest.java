@@ -16,9 +16,9 @@ public class ResultDataRest {
     @Autowired
     private ResultModelService resultModelService;
 
-    @GetMapping("/getAllStudentResultData")
-    public ResponseEntity<List<ResultModel>> getAllStudentResult() {
-        List<ResultModel> results = resultModelService.getAllStudents();
+    @GetMapping("/getAllStudentResultData/{adminId}")
+    public ResponseEntity<List<ResultModel>> getAllStudentResult(@PathVariable String adminId) {
+        List<ResultModel> results = resultModelService.getAllStudents(adminId);
         return ResponseEntity.ok(results);
     }
 
@@ -29,15 +29,15 @@ public class ResultDataRest {
         return ResponseEntity.ok(savedResult);
     }
 
-    @DeleteMapping("/deleteAllStudentResultData")
-    public ResponseEntity<Void> deleteAllStudentResultData() {
-        resultModelService.deleteAllStudents();
+    @DeleteMapping("/deleteAllStudentResultData/{adminId}")
+    public ResponseEntity<Void> deleteAllStudentResultData(@PathVariable String adminId) {
+        resultModelService.deleteAllStudents(adminId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getStudentResultDataByStudentPrn/{prn}")
-    public ResponseEntity<ResultModel> getStudentResultByPRN(@PathVariable String prn) {
-        ResultModel result = resultModelService.getResultByPRN(prn);
+    @GetMapping("/getStudentResultDataByStudentPrn/{prn}/{adminId}")
+    public ResponseEntity<ResultModel> getStudentResultByPRN(@PathVariable String prn,@PathVariable String adminId) {
+        ResultModel result = resultModelService.getResultByPRN(prn,adminId);
         if (result == null) {
             return ResponseEntity.notFound().build();
         }

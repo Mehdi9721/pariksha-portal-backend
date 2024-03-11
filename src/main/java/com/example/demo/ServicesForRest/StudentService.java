@@ -14,8 +14,8 @@ public class StudentService {
 @Autowired	
 private StudentRepository Studentrepo; 
 
-public List<StudentModel> getAllStudents(){
-	return Studentrepo.findAll();
+public List<StudentModel> getAllStudents(String adminId){
+	return Studentrepo.findAllStu(adminId);
 }
 public StudentModel saveStudent(StudentModel student) {
 return Studentrepo.save(student);
@@ -27,15 +27,15 @@ public void deleteStudentByPRN(String prn) {
    
 	Studentrepo.deleteByStudentPrn(prn);
 }
-public void deleteAllStudents() {
-    Studentrepo.deleteAll();;
+public void deleteAllStudents(String adminId) {
+    Studentrepo.deleteAllStudent(adminId);;
 }
-public StudentModel findStudentbyPrn(String prn) {
-	return Studentrepo.findByStudentPrn(prn);
+public StudentModel findStudentbyPrn(String prn,String adminId) {
+	return Studentrepo.findByStudentPrn(prn,adminId);
 }
-public void processAndSaveFile(MultipartFile file) {
+public void processAndSaveFile(MultipartFile file,String adminId) {
     try (InputStream inputStream = file.getInputStream()) {
-        List<StudentModel> students = ExcelFileProcessor.process(inputStream);
+        List<StudentModel> students = ExcelFileProcessor.process(inputStream,adminId);
         Studentrepo.saveAll(students);
     } catch (IOException e) {
         e.printStackTrace();

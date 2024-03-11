@@ -17,25 +17,26 @@ public class QuestionPaperService {
     @Autowired
     private QuestionPaperRepository questionPaperDataRepository;
 
-    public List<QuestionPaperDataModel> getAllQuestions() {
-        return questionPaperDataRepository.findAll();
+    public List<QuestionPaperDataModel> getAllQuestions(String adminEmail) {
+        return questionPaperDataRepository.findAllQuestions(adminEmail);
     }
 
     public QuestionPaperDataModel addQuestion(QuestionPaperDataModel question) {
         return questionPaperDataRepository.save(question);
     }
 
-    public void deleteAllQuestions() {
-        questionPaperDataRepository.deleteAll();
+    public void deleteAllQuestions(String adminEmail) {
+        questionPaperDataRepository.deleteAllQuestions(adminEmail);
     }
 
     
   
-    public void processAndSaveQuestionPaper(MultipartFile file,String examId) {
+    public void processAndSaveQuestionPaper(MultipartFile file,String examId,String adminEmail) {
         try (InputStream inputStream = file.getInputStream()) {
            List<QuestionPaperDataModel> papers = ExcelFileProcessorOfPaper.process(inputStream);
            for (QuestionPaperDataModel questionPaper : papers) {
                questionPaper.setExamId(examId);
+               questionPaper.setAdminEmail(adminEmail);
            }
         	questionPaperDataRepository.saveAll(papers);
         } catch (IOException e) {
@@ -49,8 +50,12 @@ public class QuestionPaperService {
 		  return questionPaperDataRepository.findByExamId(examId);
 	}
 	
-	  public void deleteQuestionByExamId(Long id) {
+	  public void deleteQuestionById(Long id) {
 		  questionPaperDataRepository.deleteById(id);
+		
+	    }
+	  public void deleteQuestionByExamId(String ExamId) {
+		  questionPaperDataRepository.deleteQuestionByExamId(ExamId);
 		
 	    }
 	
