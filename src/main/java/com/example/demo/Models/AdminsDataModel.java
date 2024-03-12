@@ -18,7 +18,7 @@ private String adminEmail;
 private String adminPassword;
 private String adminRoles;
 public AdminsDataModel(){
-    this.adminRoles = "ROLE_ADMIN";
+    this.adminRoles = "ADMIN";
 }
 
 public Long getId() {

@@ -26,4 +26,7 @@ public interface ResultModelRepository extends JpaRepository<ResultModel, Long> 
 	  @Modifying
 	  @Query("delete  from ResultModel E where E.adminId= :adminId")
 	  void deleteAllResult(@Param("adminId") String adminId);
+	  
+	  @Query("SELECT r FROM ResultModel r WHERE r.adminId = :adminId and r.studentPrn= :studentPrn")
+	  ResultModel findByStudentPrnAndAdminId(@Param("studentPrn")String prn,@Param("adminId")String adminId);
 }

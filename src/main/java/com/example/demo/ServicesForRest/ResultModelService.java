@@ -25,7 +25,7 @@ public class ResultModelService {
         return resultModelRepository.findByStudentPrn(prn);
     }
     public ResultModel getResultByPRN(String prn,String adminId) {
-        return resultModelRepository.findByStudentPrn(prn,adminId);
+        return resultModelRepository.findByStudentPrnAndAdminId(prn,adminId);
     }
 
     public void deleteAllStudents(String adminId) {

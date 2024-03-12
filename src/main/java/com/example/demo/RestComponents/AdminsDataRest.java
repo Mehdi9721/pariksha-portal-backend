@@ -2,6 +2,7 @@ package com.example.demo.RestComponents;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -12,6 +13,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,11 +41,20 @@ private JwtService jwtService;
 @Autowired
 private AuthenticationManager authenticationManager;
 
+
 @PostMapping("/adminSignup")
 public ResponseEntity<AdminsDataModel> adminSave(@RequestBody AdminsDataModel adminModel) {
-	AdminsDataModel adminSaved=adminService.saveAdmin(adminModel);
-	return ResponseEntity.ok(adminSaved);
+	int adEmail=adminService.findAdminByEamil(adminModel.getAdminEmail());
+	if(adEmail==1) {
+		AdminsDataModel adminUpdated=adminService.updateAdmin(adminModel);
+		return ResponseEntity.ok(adminUpdated);
+	}else {
+		AdminsDataModel adminSaved=adminService.saveAdmin(adminModel);
+		return ResponseEntity.ok(adminSaved);
 	}
+	
+	}
+
 @PutMapping("/adminLogi")
 public ResponseEntity<String> adminLogin(@RequestBody AdminsDataModel adminModel) {
 	AdminsDataModel adminAuth=adminService.findAdmin(adminModel);
@@ -85,7 +98,17 @@ public ResponseEntity<Map<String, String>> authenticateAndGetToken(@RequestBody 
 		}
 
 }
+	
+@GetMapping("/findAllAdmins")
+public List<AdminsDataModel> allAdmins(){
+	return adminr.findAll();
+}
 
+@DeleteMapping("/deleteAdmin/{id}")
+public void deleteAdmin(@PathVariable("id") String id) {
+	
+	adminr.deleteAdminById(id);
+}
 
 
 }
