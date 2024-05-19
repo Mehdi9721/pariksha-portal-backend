@@ -84,10 +84,13 @@ public ResponseEntity<Map<String, String>> authenticateAndGetToken(@RequestBody 
                   .orElse(null);
 		  String adminName = x.map(admin -> admin.getAdminName())
                   .orElse(null);
+		  String adminUserName = x.map(admin -> admin.getAdminUserName())
+                  .orElse(null);
 		  	 Map<String, String> responseMap = new HashMap<>();
 	            responseMap.put("token", token);
 	            responseMap.put("adminId", adminId);
 	            responseMap.put("adminName", adminName);
+	            responseMap.put("adminUserName", adminUserName);
 	            return ResponseEntity.ok(responseMap);
 		    } else {
 		        throw new UsernameNotFoundException("invalid user request !");

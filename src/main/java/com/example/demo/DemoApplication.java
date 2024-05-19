@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.example.demo.Models.AdminsDataModel;
+
 @SpringBootApplication
 @CrossOrigin
 @EnableJpaRepositories(basePackages = "com.example.demo.jpaRepositories")

@@ -37,8 +37,4 @@ public class AdminsDataService {
 		  adminrepo.updateAdmin(admin.getAdminName(),admin.getAdminUserName(),admin.getAdminEmail(),admin.getAdminPassword());
 		  return admin;
 		}
-	
-	
-	
-	
 }

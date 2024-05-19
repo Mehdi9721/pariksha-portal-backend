@@ -24,19 +24,19 @@ public class ResultModelService {
     public ResultModel getResultByPRN(String prn) {
         return resultModelRepository.findByStudentPrn(prn);
     }
-    public ResultModel getResultByPRN(String prn,String adminId) {
-        return resultModelRepository.findByStudentPrnAndAdminId(prn,adminId);
+    public ResultModel getResultByPRN(String prn,String adminId,String examId) {
+        return resultModelRepository.findByStudentPrnAndAdminId(prn,adminId,examId);
     }
 
     public void deleteAllStudents(String adminId) {
         resultModelRepository.deleteAllResult(adminId);
     }
 
-    public void deleteStudentByPRN(String prn) {
-        ResultModel result = getResultByPRN(prn);
-        if (result != null) {
-            resultModelRepository.delete(result);
-        }
+    public void deleteStudentByPRN(String prn,String examId) {
+    
+       
+            resultModelRepository.deleteResultByPRNandExamId(prn,examId);
+        
     }
     public ResultModel getresultByprnandExamid(String examId,String studentPrn) {
     ResultModel rm=	resultModelRepository.getStudentResultByExamIdandPrn(examId, studentPrn);

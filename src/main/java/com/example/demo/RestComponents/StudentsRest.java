@@ -31,7 +31,6 @@ public class StudentsRest {
 	
 	@PostMapping("/saveStudent")
 	public ResponseEntity<StudentModel> saveStudent(@RequestBody StudentModel Student){
-		System.out.println("saveStudent url");
 		StudentModel studSave=studentservice.saveStudent(Student);
 		return ResponseEntity.ok(studSave);
 	}
@@ -68,9 +67,7 @@ public class StudentsRest {
 	
 	@GetMapping("/getStudentByPrn/{prn}/{adminId}")
 	 public ResponseEntity<StudentModel> getStudentByPrn(@PathVariable() String prn,@PathVariable() String adminId) {
-		System.out.println("ok...");
 		StudentModel studentValid=studentservice.findStudentbyPrn(prn,adminId);
-		System.out.println(studentValid);
 		if (studentValid != null) {
 	        return ResponseEntity.ok(studentValid);
 	    } else {

@@ -39,7 +39,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/authenticate","/api/adminLogin","/api/postStudentResultData","/api/postActiveExamData","/api/getAllQuestions","/api/getAllQuestionsByExamId/{examId}","/api/postStudentResultData","/api/getStudentByPrn/{prn}/{adminId}","/api/getStudentResultDataByStudentPrn/{prn}/{adminId}","/api/getExamByExamId/{examId}","/api/deleteActiveExamByStudentPrn/{Prn}").permitAll()
+                .requestMatchers("/api/authenticate","/api/adminLogin",
+                		"/api/postStudentResultData","/api/postActiveExamData",
+                		"/api/getAllQuestions","/api/getAllQuestionsByExamId/{examId}",
+                		"/api/postStudentResultData",
+                		"/api/getStudentByPrn/{prn}/{adminId}",
+                		"/api/getStudentResultDataByStudentPrn/{prn}/{adminId}/{examId}",
+                		"/api/getExamByExamId/{examId}",
+                		"/api/deleteActiveExamByStudentPrn/{Prn}").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated().and()

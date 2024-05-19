@@ -24,7 +24,6 @@ public class ResultDataRest {
 
     @PostMapping("/postStudentResultData")
     public ResponseEntity<ResultModel> saveStudent(@RequestBody ResultModel result) {
-        System.out.println("saveStudent url");
         ResultModel savedResult = resultModelService.saveStudent(result);
         return ResponseEntity.ok(savedResult);
     }
@@ -35,22 +34,22 @@ public class ResultDataRest {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getStudentResultDataByStudentPrn/{prn}/{adminId}")
-    public ResponseEntity<ResultModel> getStudentResultByPRN(@PathVariable String prn,@PathVariable String adminId) {
-        ResultModel result = resultModelService.getResultByPRN(prn,adminId);
+    @GetMapping("/getStudentResultDataByStudentPrn/{prn}/{adminId}/{examId}")
+    public ResponseEntity<ResultModel> getStudentResultByPRN(@PathVariable String prn,@PathVariable String adminId,@PathVariable String examId) {
+        ResultModel result = resultModelService.getResultByPRN(prn,adminId,examId);
         if (result == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/deleteStudentResultDataByStudentPrn/{prn}")
-    public ResponseEntity<Void> deleteStudentResultByPRN(@PathVariable String prn) {
-        ResultModel result = resultModelService.getResultByPRN(prn);
-        if (result == null) {
-            return ResponseEntity.notFound().build();
-        }
-        resultModelService.deleteStudentByPRN(prn);
+    @DeleteMapping("/deleteStudentResultDataByStudentPrn/{prn}/{examId}")
+    public ResponseEntity<Void> deleteStudentResultByPRN(@PathVariable String prn,@PathVariable String examId) {
+//        ResultModel result = resultModelService.getResultByPRN(prn,examId);
+//        if (result == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+        resultModelService.deleteStudentByPRN(prn,examId);
         return ResponseEntity.noContent().build();
     }
 }
